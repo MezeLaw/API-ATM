@@ -3,184 +3,196 @@ package com.meze.atmapi.dto;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CajeroAutomatico implements Serializable{
+public class CajeroAutomatico implements Serializable {
 
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
-	/***
-	 * 
-	 * 
-	 * "Id": "S1ABM008D", "Name": "BANCO MACRO", "Hour_Start": "0:00", "Hour_End":
-	 * "23:59:59 ", "Language_List": "Español / English", "Accessibility": false,
-	 * "Amount_Left": 900000, "ATM_Type": "Solo Extracción", "Street_Name": "PERITO
-	 * MORENO 102", "Street_Number": "", "City": "GODOY CRUZ", "State": "MENDOZA",
-	 * "Zip": "", "Lat": "-32.927113", "Lng": "-68.78382"
-	 * 
-	 * 
-	 **/
 
-	private String Id;
-	private String Name;
-	private String Hour_Start;
-	private String Hour_End;
-	private String Language_List;
-	private boolean Accessibility;
-	private int Amount_Left;
-	private String ATM_Type;
-	private String Street_Name;
-	private String Street_Number;
-	private String City;
-	private String State;
-	private String Zip;
-	private String Lat;
-	private String Lng;
+	@JsonProperty("Id")
+	private String id;
+	@JsonProperty("Name")
+	private String nombre;
+	@JsonProperty("Hour_Start")
+	private String horaInicio;
+	@JsonProperty("Hour_End")
+	private String horaFin;
+	@JsonProperty("Language_List")
+	private String listaLenguajes;
+	@JsonProperty("Accessibility")
+	private boolean accesibilidad;
+	@JsonProperty("Amount_Left")
+	private int montoDisponible;
+	@JsonProperty("ATM_Type")
+	private String tipoATM;
+	@JsonProperty("Street_Name")
+	private String direccionCalle;
+	@JsonProperty("Street_Number")
+	private String direccionNumero;
+	@JsonProperty("City")
+	private String ciudad;
+	@JsonProperty("State")
+	private String provincia;
+	@JsonProperty("Zip")
+	private String codigoPostal;
+	@JsonProperty("Lat")
+	private String latitud;
+	@JsonProperty("Lng")
+	private String longitud;
 
 	public CajeroAutomatico() {
 
 	}
 
-//	public CajeroAutomatico(String id, String nombre, String horaInicio, String horaFin, String lenguajesLista,
-//			boolean accesibilidad, int dineroDisponible, String tipoAtm, String direccionCalle, String direccionNumero,
-//			String ciudad, String provincia, String cp, String lat, String lng) {
-//		this.Id = id;
-//		this.Name = nombre;
-//		this.Hour_Start = horaInicio;
-//		this.Hour_End = horaFin;
-//		this.Language_List = lenguajesLista;
-//		this.Accessibility = accesibilidad;
-//		this.Amount_Left = dineroDisponible;
-//		this.ATM_Type = tipoAtm;
-//		this.Street_Name = direccionCalle;
-//		this.Street_Number = direccionNumero;
-//		this.City = ciudad;
-//		this.State = provincia;
-//		this.Zip = cp;
-//		this.Lat = lat;
-//		this.Lng = lng;
-//	}
+	public CajeroAutomatico(String id, String nombre, String horaInicio, String horaFin, String listaLenguajes,
+			boolean accesibilidad, int montoDisponible, String tipoATM, String direccionCalle, String direccionNumero,
+			String ciudad, String provincia, String codigoPostal, String latitud, String longitud) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.horaInicio = horaInicio;
+		this.horaFin = horaFin;
+		this.listaLenguajes = listaLenguajes;
+		this.accesibilidad = accesibilidad;
+		this.montoDisponible = montoDisponible;
+		this.tipoATM = tipoATM;
+		this.direccionCalle = direccionCalle;
+		this.direccionNumero = direccionNumero;
+		this.ciudad = ciudad;
+		this.provincia = provincia;
+		this.codigoPostal = codigoPostal;
+		this.latitud = latitud;
+		this.longitud = longitud;
+	}
 
 	public String getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(String id) {
-		Id = id;
+		this.id = id;
 	}
 
-	public String getName() {
-		return Name;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setName(String name) {
-		Name = name;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getHour_Start() {
-		return Hour_Start;
+	public String getHoraInicio() {
+		return horaInicio;
 	}
 
-	public void setHour_Start(String hour_Start) {
-		Hour_Start = hour_Start;
+	public void setHoraInicio(String horaInicio) {
+		this.horaInicio = horaInicio;
 	}
 
-	public String getHour_End() {
-		return Hour_End;
+	public String getHoraFin() {
+		return horaFin;
 	}
 
-	public void setHour_End(String hour_End) {
-		Hour_End = hour_End;
+	public void setHoraFin(String horaFin) {
+		this.horaFin = horaFin;
 	}
 
-	public String getLanguage_List() {
-		return Language_List;
+	public String getListaLenguajes() {
+		return listaLenguajes;
 	}
 
-	public void setLanguage_List(String language_List) {
-		Language_List = language_List;
+	public void setListaLenguajes(String listaLenguajes) {
+		this.listaLenguajes = listaLenguajes;
 	}
 
-	public boolean isAccessibility() {
-		return Accessibility;
+	public boolean isAccesibilidad() {
+		return accesibilidad;
 	}
 
-	public void setAccessibility(boolean accessibility) {
-		Accessibility = accessibility;
+	public void setAccesibilidad(boolean accesibilidad) {
+		this.accesibilidad = accesibilidad;
 	}
 
-	public int getAmount_Left() {
-		return Amount_Left;
+	public int getMontoDisponible() {
+		return montoDisponible;
 	}
 
-	public void setAmount_Left(int amount_Left) {
-		Amount_Left = amount_Left;
+	public void setMontoDisponible(int montoDisponible) {
+		this.montoDisponible = montoDisponible;
 	}
 
-	public String getATM_Type() {
-		return ATM_Type;
+	public String getTipoATM() {
+		return tipoATM;
 	}
 
-	public void setATM_Type(String aTM_Type) {
-		ATM_Type = aTM_Type;
+	public void setTipoATM(String tipoATM) {
+		this.tipoATM = tipoATM;
 	}
 
-	public String getStreet_Name() {
-		return Street_Name;
+	public String getDireccionCalle() {
+		return direccionCalle;
 	}
 
-	public void setStreet_Name(String street_Name) {
-		Street_Name = street_Name;
+	public void setDireccionCalle(String direccionCalle) {
+		this.direccionCalle = direccionCalle;
 	}
 
-	public String getStreet_Number() {
-		return Street_Number;
+	public String getDireccionNumero() {
+		return direccionNumero;
 	}
 
-	public void setStreet_Number(String street_Number) {
-		Street_Number = street_Number;
+	public void setDireccionNumero(String direccionNumero) {
+		this.direccionNumero = direccionNumero;
 	}
 
-	public String getCity() {
-		return City;
+	public String getCiudad() {
+		return ciudad;
 	}
 
-	public void setCity(String city) {
-		City = city;
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
 	}
 
-	public String getState() {
-		return State;
+	public String getProvincia() {
+		return provincia;
 	}
 
-	public void setState(String state) {
-		State = state;
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
 	}
 
-	public String getZip() {
-		return Zip;
+	public String getCodigoPostal() {
+		return codigoPostal;
 	}
 
-	public void setZip(String zip) {
-		Zip = zip;
+	public void setCodigoPostal(String codigoPostal) {
+		this.codigoPostal = codigoPostal;
 	}
 
-	public String getLat() {
-		return Lat;
+	public String getLatitud() {
+		return latitud;
 	}
 
-	public void setLat(String lat) {
-		Lat = lat;
+	public void setLatitud(String latitud) {
+		this.latitud = latitud;
 	}
 
-	public String getLng() {
-		return Lng;
+	public String getLongitud() {
+		return longitud;
 	}
 
-	public void setLng(String lng) {
-		Lng = lng;
+	public void setLongitud(String longitud) {
+		this.longitud = longitud;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
 }

@@ -20,44 +20,54 @@ public class ConsultaATMController {
 	public void obtenerCajeros() {
 
 		try {
+
+			/** De esta forma no puede deserializar...  Agregue la dependencia de jackson pero no funca igual xd . 
+			Ver a futuro si se puede hacer de esta forma porque es mas prolija**/
 			
-//			/** De esta forma no puede deserializar...  Agregue la dependencia de jackson pero no funca igual xd **/
 //			RestTemplate restTemplate = new RestTemplate();
 //			CajeroAutomaticoList response = restTemplate.getForObject(
 //					"https://api-2445582796097.staging.gw.apicast.io/api/v1/atms?apikey=68b1e175f2fdfcbfddf461bcc9991d5b",
 //					CajeroAutomaticoList.class);
 //			List<CajeroAutomatico> cajeros = response.getCajerosAutomaticos();
-			
-			/** De esta forma pareciera que jamas llega info pero la lista de objetos es armada correctamente **/
+
+			/**
+			 * De esta forma pareciera que jamas llega info pero la lista de objetos es
+			 * armada correctamente
+			 **/
 			RestTemplate restTemplate = new RestTemplate();
 			ResponseEntity<List<CajeroAutomatico>> response = restTemplate.exchange(
-			  "https://api-2445582796097.staging.gw.apicast.io/api/v1/atms?apikey=68b1e175f2fdfcbfddf461bcc9991d5b",
-			  HttpMethod.GET,
-			  null,
-			  new ParameterizedTypeReference<List<CajeroAutomatico>>(){});
+					"https://api-2445582796097.staging.gw.apicast.io/api/v1/atms?apikey=68b1e175f2fdfcbfddf461bcc9991d5b",
+					HttpMethod.GET, null, new ParameterizedTypeReference<List<CajeroAutomatico>>() {
+					});
 			List<CajeroAutomatico> cajeros = response.getBody();
 
 			for (CajeroAutomatico atm : cajeros) {
-				System.out.println(atm.getName() + ":" + atm.getAmount_Left() + "efectivo disponible. ");
+				System.out.println( cajeros.indexOf(atm) + 1 +" - "+ atm.getId() + " " + atm.getNombre() + " - Efectivo disponible $"
+						+ atm.getMontoDisponible() + " - " + atm.getProvincia() + " - " + atm.getCiudad() + " - "
+						+ atm.getDireccionCalle() + " " + atm.getDireccionNumero());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	//Este es un metodo con un id harcodeado pero que existe. Solo para probar si me los trae null igual xd
-	@GetMapping(path = "/obtenerAtmPorId")
-	public void obtenerCajeroPorId() {
-   
-		try {
-			
-			RestTemplate restTemplate = new RestTemplate();
-			CajeroAutomatico response = restTemplate.getForObject(
-			  "https://api-2445582796097.staging.gw.apicast.io/api/v1/atms/S1AGL273D?apikey=68b1e175f2fdfcbfddf461bcc9991d5b",
-			  CajeroAutomatico.class);
 
-			System.out.println(response.getName()+": "+response.getAmount_Left() +"disponible para extracciones.");
-			
+	/**
+	 * Metodo con un id harcodeado en la url, solo para probar
+	 */
+	@GetMapping(path = "/obtenerAtmPorId/12251993")
+	public void obtenerCajeroPorId() {
+
+		try {
+
+			RestTemplate restTemplate = new RestTemplate();
+			CajeroAutomatico atm = restTemplate.getForObject(
+					"https://api-2445582796097.staging.gw.apicast.io/api/v1/atms/S1AGL273D?apikey=68b1e175f2fdfcbfddf461bcc9991d5b",
+					CajeroAutomatico.class);
+
+			System.out.println( atm.getId() + " " + atm.getNombre() + " - Efectivo disponible $"
+					+ atm.getMontoDisponible() + " " + atm.getProvincia() + " " + atm.getCiudad() + " - "
+					+ atm.getDireccionCalle() + " " + atm.getDireccionNumero());
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
